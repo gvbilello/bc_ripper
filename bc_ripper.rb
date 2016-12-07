@@ -3,22 +3,23 @@ require 'open-uri'
 require 'fileutils'
 require 'nokogiri'
 require 'json'
-require 'pry'
-require 'pry-byebug'
+# require 'pry'
+# require 'pry-byebug'
 
 # get artist name and album title
 
 # get url of Bandcamp Page
-puts "Bandcamp Ripper"
+puts "BC_Ripper"
+puts "Beta version 0.1"
 puts "---------------"
 puts "Enter the url of the page you'd like to rip songs from:"
 url = gets.chomp
 
-index = nil
 
 # parse url with Nokogiri to get correct JS script containing tracks
 source = Nokogiri::HTML(open(url))
 scripts = source.xpath("//script")
+index = nil
 scripts.each do |script|
 	if script.children.to_s.include?("var TralbumData")
 		index = scripts.index(script)
@@ -26,10 +27,11 @@ scripts.each do |script|
 	end
 end
 
-title = String.new
 
 # get artist and album info
 metas = source.xpath("//meta")
+title = String.new
+
 metas.each do |meta|
 	if meta.attributes
 		if meta.attributes["name"]
@@ -43,7 +45,6 @@ metas.each do |meta|
 end
 
 title_array = title.split(", by ")
-
 album = title_array[0]
 artist = title_array[1]
 
