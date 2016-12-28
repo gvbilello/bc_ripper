@@ -72,6 +72,7 @@ track_data.each do |track|
 	track.each do |key, value|
 		if key == "title"
 			track_hash[:title] = track[key]
+			track_hash[:title].tr!('/', '')
 		elsif key == "track_num"
 			track_hash[:track_num] = track[key]
 		elsif key == "file"
