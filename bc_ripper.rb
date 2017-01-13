@@ -37,7 +37,7 @@ metas.each do |meta|
 		if meta.attributes["name"]
 			if meta.attributes["name"].value
 				if meta.attributes["name"].value == "title"
-					title = meta.attributes["content"].value.tr!('/', '')
+					title = meta.attributes["content"].value
 				end
 			end
 		end
