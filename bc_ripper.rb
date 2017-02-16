@@ -71,7 +71,8 @@ track_data.each do |track|
 	track_hash = Hash.new
 	track.each do |key, value|
 		if key == "title"
-			track_hash[:title] = track[key]
+			# limit title length to 100 chars
+			track_hash[:title] = track[key][0..99]
 			track_hash[:title].tr!('/', '')
 		elsif key == "track_num"
 			track_hash[:track_num] = track[key]
