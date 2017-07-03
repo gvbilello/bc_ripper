@@ -15,7 +15,6 @@ puts "---------------"
 puts "Enter the url of the page you'd like to rip songs from:"
 url = gets.chomp
 
-
 # parse url with Nokogiri to get correct JS script containing tracks
 source = Nokogiri::HTML(open(url))
 scripts = source.xpath("//script")
